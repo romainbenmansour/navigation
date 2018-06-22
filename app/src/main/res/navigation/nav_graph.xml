@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation android:id="@+id/nav_graph.xml"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/greenFragment"
+        android:name="icarie.com.jetpacknav.fragments.GreenFragment"
+        android:label="fragment_green"
+        tools:layout="@layout/fragment_green">
+        <action
+            android:id="@+id/action_greenFragment_to_blueFragment"
+            app:destination="@id/blueFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/blueFragment"
+        android:name="icarie.com.jetpacknav.fragments.BlueFragment"
+        android:label="fragment_blue"
+        tools:layout="@layout/fragment_blue">
+        <action
+            android:id="@+id/action_blueFragment_to_redFragment"
+            app:destination="@id/redFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/redFragment"
+        android:name="icarie.com.jetpacknav.fragments.RedFragment"
+        android:label="fragment_red"
+        tools:layout="@layout/fragment_red" />
+
+    <fragment
+        android:id="@+id/purpleFragment"
+        android:name="icarie.com.jetpacknav.fragments.PurpleFragment"
+        android:label="fragment_purple"
+        tools:layout="@layout/fragment_purple" />
+
+    <activity
+        android:id="@+id/mainActivity"
+        android:name="icarie.com.jetpacknav.activities.MainActivity"
+        android:label="activity_main"
+        tools:layout="@layout/activity_main" />
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="icarie.com.jetpacknav.fragments.HomeFragment"
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_greenFragment"
+            app:destination="@id/greenFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_purpleFragment"
+            app:destination="@id/purpleFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_yellowFragment"
+            app:destination="@id/yellowFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/yellowFragment"
+        android:name="icarie.com.jetpacknav.fragments.YellowFragment"
+        android:label="fragment_yellow"
+        tools:layout="@layout/fragment_yellow" />
+
+</navigation>
