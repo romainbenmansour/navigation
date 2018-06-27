@@ -6,30 +6,15 @@
     app:startDestination="@id/homeFragment">
 
     <fragment
-        android:id="@+id/greenFragment"
-        android:name="icarie.com.jetpacknav.fragments.GreenFragment"
-        android:label="fragment_green"
-        tools:layout="@layout/fragment_green">
+        android:id="@+id/firstLaunchFragment"
+        android:name="icarie.com.jetpacknav.fragments.FirstLaunchFragment"
+        android:label="First Launch Fragment"
+        tools:layout="@layout/fragment_first_launch">
         <action
-            android:id="@+id/action_greenFragment_to_blueFragment"
-            app:destination="@id/blueFragment" />
+            android:id="@+id/action_firstLaunchFragment_to_requestPermissionFragment"
+            app:clearTask="true"
+            app:destination="@id/requestPermissionFragment" />
     </fragment>
-
-    <fragment
-        android:id="@+id/blueFragment"
-        android:name="icarie.com.jetpacknav.fragments.BlueFragment"
-        android:label="fragment_blue"
-        tools:layout="@layout/fragment_blue">
-        <action
-            android:id="@+id/action_blueFragment_to_redFragment"
-            app:destination="@id/redFragment" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/redFragment"
-        android:name="icarie.com.jetpacknav.fragments.RedFragment"
-        android:label="fragment_red"
-        tools:layout="@layout/fragment_red" />
 
     <fragment
         android:id="@+id/purpleFragment"
@@ -46,22 +31,35 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="icarie.com.jetpacknav.fragments.HomeFragment"
-        android:label="HomeFragment" >
+        android:label="HomeFragment">
         <action
-            android:id="@+id/action_homeFragment_to_greenFragment"
-            app:destination="@id/greenFragment" />
+            android:id="@+id/action_homeFragment_to_firstLaunchFragment"
+            app:destination="@id/firstLaunchFragment"
+            app:popUpTo="@+id/nav_graph.xml" />
         <action
             android:id="@+id/action_homeFragment_to_purpleFragment"
             app:destination="@id/purpleFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_yellowFragment"
-            app:destination="@id/yellowFragment" />
+            android:id="@+id/action_homeFragment_to_requestPermissionFragment"
+            app:destination="@id/requestPermissionFragment" />
     </fragment>
 
     <fragment
-        android:id="@+id/yellowFragment"
-        android:name="icarie.com.jetpacknav.fragments.YellowFragment"
-        android:label="fragment_yellow"
-        tools:layout="@layout/fragment_yellow" />
+        android:id="@+id/loginFragment"
+        android:name="icarie.com.jetpacknav.fragments.LoginFragment"
+        android:label="LoginFragment">
+        <action
+            android:id="@+id/action_loginFragment_to_purpleFragment"
+            app:destination="@id/purpleFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/requestPermissionFragment"
+        android:name="icarie.com.jetpacknav.fragments.RequestPermissionFragment"
+        android:label="Request Permission Fragment"
+        tools:layout="@layout/fragment_request_permission">
+        <action
+            android:id="@+id/action_requestPermissionFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
 
 </navigation>

@@ -5,17 +5,13 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import androidx.navigation.Navigation;
 import icarie.com.jetpacknav.R;
 
-public class GreenFragment extends Fragment
+public class FirstLaunchFragment extends Fragment
 {
-  private Button mNext;
-  private Button mPrevious;
-
-  public GreenFragment()
+  public FirstLaunchFragment()
   {
     // Required empty public constructor
   }
@@ -31,21 +27,16 @@ public class GreenFragment extends Fragment
                            Bundle savedInstanceState)
   {
     // Inflate the layout for this fragment
-    View v = inflater.inflate(R.layout.fragment_green, container, false);
+    View v = inflater.inflate(R.layout.fragment_first_launch, container, false);
 
-    mNext = v.findViewById(R.id.next);
-    mPrevious = v.findViewById(R.id.previous);
-
-    mPrevious.setOnClickListener(new View.OnClickListener()
+    v.findViewById(R.id.start).setOnClickListener(new View.OnClickListener()
     {
       @Override
       public void onClick(View v)
       {
-        Navigation.findNavController(v).popBackStack();
+        Navigation.findNavController(v).navigateUp();
       }
     });
-
-    mNext.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.blueFragment, null));
 
     return v;
   }

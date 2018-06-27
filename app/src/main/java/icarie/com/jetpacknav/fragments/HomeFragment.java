@@ -1,9 +1,13 @@
 package icarie.com.jetpacknav.fragments;
 
 import android.Manifest;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.databinding.DataBindingUtil;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -16,6 +20,8 @@ import android.view.ViewGroup;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import icarie.com.jetpacknav.R;
+import icarie.com.jetpacknav.databinding.FragmentHomeBinding;
+import icarie.com.jetpacknav.viewmodels.HomeViewModel;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -44,12 +50,15 @@ public class HomeFragment extends Fragment
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
                            Bundle savedInstanceState)
   {
-    // Inflate the layout for this fragment
-    View v = inflater.inflate(R.layout.fragment_home, container, false);
+    FragmentHomeBinding binding = FragmentHomeBinding.inflate(getLayoutInflater(), container, false);
+
+    HomeViewModel homeViewModel = new HomeViewModel("TOTO", "TEST");
+
+    binding.setHomeViewModel(homeViewModel);
 
     mPreferences = getActivity().getSharedPreferences("TOTO", MODE_PRIVATE);
 
-    return v;
+    return binding.getRoot();
   }
 
   @Override
@@ -66,16 +75,29 @@ public class HomeFragment extends Fragment
     super.onResume();
 
     mIsFirstLaunch = mPreferences.getBoolean("first_launch", true);
-
     if (mIsFirstLaunch)
     {
       mPreferences.edit().putBoolean(FIRST_LAUNCH, false).apply();
 
-      mNavController.navigate(R.id.action_homeFragment_to_greenFragment);
+      mNavController.navigate(R.id.action_homeFragment_to_firstLaunchFragment);
     }
     else if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)
     {
-      mNavController.navigate(R.id.action_homeFragment_to_yellowFragment);
+      Bundle bundle = new Bundle();
+      bundle.putInt("permission", 1);
+      mNavController.navigate(R.id.action_homeFragment_to_requestPermissionFragment, bundle);
+    }
+    else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !Settings.canDrawOverlays(getContext()))
+    {
+      Bundle bundle = new Bundle();
+      bundle.putInt("permission", 2);
+      mNavController.navigate(R.id.action_homeFragment_to_requestPermissionFragment, bundle);
+    }
+    else if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED)
+    {
+      Bundle bundle = new Bundle();
+      bundle.putInt("permission", 3);
+      mNavController.navigate(R.id.action_homeFragment_to_requestPermissionFragment, bundle);
     }
     else
     {

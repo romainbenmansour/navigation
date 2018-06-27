@@ -3,38 +3,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#00ff00"
-    tools:context=".fragments.GreenFragment">
+    android:background="#006400"
+    tools:context=".fragments.FirstLaunchFragment">
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:text="First Launch"
+        android:textColor="#ffffff"
+        android:textSize="30sp" />
 
-        <TextView
-            android:id="@+id/text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Green fragment"
-            android:textColor="#ffffff"
-            android:textSize="30sp" />
-
-        <Button
-            android:id="@+id/next"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:text="NEXT"
-            android:textColor="@android:color/holo_blue_dark" />
-
-        <Button
-            android:id="@+id/previous"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:text="PREV"
-            android:textColor="@android:color/holo_blue_dark" />
-
-    </LinearLayout>
+    <Button
+        android:id="@+id/start"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="Commencer"
+        android:textColor="@android:color/holo_blue_dark" />
 
 </RelativeLayout>
